@@ -1,0 +1,33 @@
+syntax = "proto3";//声明protobuf版本
+
+package fixbug;//声明代码所在的包
+
+message LoginRequest{
+    string name=1;
+    string pwd=2;
+}
+
+message LoginResponse{
+    int32 errcode=1;
+    string errmsg=2;
+    bool success=3;
+}
+
+message User{
+    bytes name=1;
+    int32 age=2;
+    enum Sex{
+        MAN=0;
+        WOMAN=1;
+    }
+    Sex sex=3;
+}
+message ResultCode{
+    int32 errcode=1;
+    bytes errmsg=2;
+}
+
+message GetFriendsListResp{
+    ResultCode res=1;
+    repeated User friends_list=2;
+}
