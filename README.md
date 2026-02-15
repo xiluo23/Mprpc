@@ -1,1 +1,2 @@
-# Mprpc
+# Mprpc（muduo+protobuf）
+rpc服务提供方先进行初始化维护一个rpc方法的map表，在zookeeper上注册结点，创建1个I/O线程，3个worker线程，moduo绑定回调，start和loop，Rpc服务结点启动，rpc服务调用方获取service_name和method_name，然后从zookeeper中间件那里获取ip和port，构建header（header_size+rpcheader+args）,发送rpc请求，服务方由muduo的OnMessage获取网络字符流反序列化参数，生成Request和Response，其中Request为反序列化数据，找到service_name和method_name对象，绑定发送回调，调用service.callMethod，返回rpc调用响应，关闭连接，完成一次rpc调用
